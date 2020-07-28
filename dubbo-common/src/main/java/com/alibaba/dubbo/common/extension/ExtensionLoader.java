@@ -713,8 +713,7 @@ public class ExtensionLoader<T> {
             T instance = (T) EXTENSION_INSTANCES.get(clazz);
             if (instance == null) {
                 // 当缓存不存在时，创建拓展对象，并添加到缓存中。
-                Object newInstance = clazz.newInstance();
-                EXTENSION_INSTANCES.putIfAbsent(clazz, newInstance);
+                EXTENSION_INSTANCES.putIfAbsent(clazz, clazz.newInstance());
                 instance = (T) EXTENSION_INSTANCES.get(clazz);
             }
             // 注入依赖的属性
